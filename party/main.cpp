@@ -1,5 +1,5 @@
 /* Copyright 2017 Rafael Rendón Pablo <rafaelrendonpablo@gmail.com> */
-// region Template
+// region Templat
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,56 +8,42 @@
 #include <queue>
 #include <map>
 #include <numeric>
+#include <limits>
 
 #include <cstring>
 #include <cctype>
 using namespace std;
 typedef long long           int64;
 typedef unsigned long long  uint64;
+const int kUnprocessed = numeric_limits<int>::max();
 // endregion
 
-class DisjointSetUnion {
-public:
-    DisjointSetUnion() { }
-    DisjointSetUnion(int n) {
-        id_ = vector<int>(n);
-        iota(id_.begin(), id_.end(), 0);
-        size_ = vector<int>(n, 0);
-    }
 
-    int root(int u) {
-        while (id_[u] != u) {
-            u = id_[u];
-        }
-        return u;
-    }
-
-    void connect(int a, int b) {
-        a = root(a);
-        b = root(b);
-        if (a == b) {
-            return;
-        }
-        if (size_[a] < size_[b]) {
-            id_[a] = b;
-            size_[b] += size_[a];
-        } else {
-            id_[b] = a;
-            size_[a] += size_[b];
+bool isBipartite(vector<vector<int>>& graph, vector<int>& colors, int node) {
+    queue<int> Q;
+    Q.push(node);
+    colors[node] = 0;
+    vector<int> nodes;
+    while (!Q.empty()) {
+        int u = Q.front();
+        Q.pop();
+        nodes.push_back(u);
+        for (int v : graph[u]) {
+            if (colors[v] == kUnprocessed) {
+                Q.push(v);
+                colors[v] = 1 - colors[u];
+            }
         }
     }
-
-    int countGroups() {
-        map<int, bool> groups;
-        for (int u = 0; u < int(id_.size()); u++) {
-            groups[root(u)] = true;
+    for (int u : nodes) {
+        for (int v : graph[u]) {
+            if (colors[u] == colors[v]) {
+                return false;
+            }
         }
-        return groups.size();
     }
-private:
-    vector<int> id_;
-    vector<int> size_;
-};
+    return true;
+}
 
 int main() {
     ios::sync_with_stdio(false);
@@ -65,16 +51,22 @@ int main() {
 
     int N, M;
     cin >> N >> M;
-    DisjointSetUnion dsu(N);
+    vector<int> colors(N, kUnprocessed);
+    vector<vector<int>> graph(N, vector<int>());
     for (int i = 0; i < M; i++) {
         int A, B;
         cin >> A >> B;
-        dsu.connect(A - 1, B - 1);
+        A--;
+        B--;
+        graph[A].push_back(B);
+        graph[B].push_back(A);
     }
-    if (dsu.countGroups() == 2) {
-        cout << "YES" << endl;
-    } else {
-        cout << "NO" << endl;
+    bool possible = true;
+    for (int node = 0; node < N; node++) {
+        if (colors[node] == kUnprocessed) {
+            possible &= isBipartite(graph, colors, node);
+        }
     }
+    printf("%s\n", possible ? "YES" : "NO");
     return EXIT_SUCCESS;
 }
