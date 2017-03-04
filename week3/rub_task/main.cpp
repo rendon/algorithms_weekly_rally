@@ -1,4 +1,5 @@
 /* Copyright 2017 Rafael Rendón Pablo <rafaelrendonpablo@gmail.com> */
+// Problem: Rub Task (http://coj.uci.cu/24h/problem.xhtml?pid=2191)
 // region Template
 #include <iostream>
 #include <string>

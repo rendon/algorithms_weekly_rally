@@ -1,4 +1,5 @@
 /* Copyright 2017 Rafael Rendón Pablo <rafaelrendonpablo@gmail.com> */
+// Problem: Jorge's party (http://coj.uci.cu/24h/problem.xhtml?pid=2927)
 // region Templat
 #include <iostream>
 #include <string>

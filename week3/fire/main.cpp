@@ -1,4 +1,5 @@
 /* Copyright 2017 Rafael Rendón Pablo <rafaelrendonpablo@gmail.com> */
+// Problem: Fire (http://coj.uci.cu/24h/problem.xhtml?pid=1647)
 // region Template
 #include <iostream>
 #include <string>
