@@ -15,44 +15,12 @@ typedef long long           int64;
 typedef unsigned long long  uint64;
 // endregion
 
-/*
-bool test(int N, int K, int m, const string& S) {
-    int w = 1;
-    char p = S[0];
-    for (int i = 1; i < N; i++) {
-        if (S[i] == p) {
-            w++;
-            p = S[i];
-            if (w > m) {
-                if (K < 1) {
-                    return false;
-                }
-                K--;
-                w = 1;
-                p = (S[i] == '1') ? '0' : '1';
-            }
-        } else {
-            w = 1;
-            p = S[i];
-        }
-    }
-    return true;
-}
-*/
-
 bool test(int N, int K, int m, const vector<int>& segments) {
     int size = segments.size();
-    int p = 0;
     for (int i = 0; i < size; i++) {
         int s = segments[i];
         if (s <= m) {
-            p = s;
             continue;
-        }
-        if (s == 2) {
-            if (p >= m && (i + 1) < size) {
-                return false;
-            }
         }
         while (s > m) {
             if (K < 1) {
@@ -60,17 +28,35 @@ bool test(int N, int K, int m, const vector<int>& segments) {
             }
             K--;
             s -= m + 1;
-            p = 1;
-        }
-        if (s > 0) {
-            p = s;
         }
     }
     return true;
 }
 
+bool canAlternate1(const string& S, int K) {
+    for (int f = 0; f <= 1; f++) {
+        int flips = 0;
+        int bit = f;
+        for (char c : S) {
+            // cout << "c = " << c << "bit = " << (bit + '0')<< endl;
+            if (c != bit + '0') {
+                flips++;
+            }
+            bit = 1 - bit;
+        }
+        if (flips <= K) {
+            // cout << "flips = " << flips << " K = " << K << endl;
+            return true;
+        }
+    }
+    return false;
+}
+
 int solve(int N, int K, const string& S) {
-    int l = 1;
+    if (canAlternate1(S, K)) {
+        return 1;
+    }
+    int l = 2;
     int h = N + 1;
     vector<int> segments;
     int w = 1;
