@@ -15,39 +15,18 @@ typedef long long           int64;
 typedef unsigned long long  uint64;
 const int kOffset = 1000;
 const int kMax = 5001;
+const int kMaxN = 2005;
+const int kVertical = 0;
+const int kHorizontal = 1;
 // endregion
 
 
 struct Tank {
     int x, y;
-
-    bool operator<(const Tank& that) const {
-        if (this->x != that.x) {
-            return this->x < that.x;
-        }
-        return this->y < that.y;
-    }
-
 };
 
-map<Tank, int> dp[kMax];
+int dp[2][2][kMaxN];
 Tank tanks[kMax];
-
-int f(int p, int x, int y) {
-    Tank tank = tanks[p];
-    if (p == 0) {
-        return min(abs(tank.x - x), abs(tank.y - y));
-    }
-    Tank prev{x, y};
-    if (dp[p].count(prev) == 1) {
-        return dp[p][prev];
-    }
-
-    int gox = f(p - 1, tank.x, y) + abs(tank.x - x);
-    int goy = f(p - 1, x, tank.y) + abs(tank.y - y);
-    dp[p][prev] = min(gox, goy);
-    return dp[p][prev];
-}
 
 int main() {
     ios::sync_with_stdio(false);
@@ -60,6 +39,35 @@ int main() {
         tanks[i].y += kOffset;
     }
     reverse(tanks, tanks + T);
-    cout << f(T - 1, kOffset, kOffset) << endl;
+    tanks[T] = {kOffset, kOffset};
+
+    // Base case
+    for (int p = 0; p < T; p++) {
+        for (int d = 0; d <= 1; d++) {
+            for (int v = 0; v < kMaxN; v++) {
+                Tank tank = tanks[p];
+                int x, y;
+                if (d == kVertical) {
+                    x = tanks[p+1].x;
+                    y = v;
+                } else {
+                    y = tanks[p+1].y;
+                    x = v;
+                }
+
+                int curr = p % 2;
+                if (p == 0) {
+                    dp[curr][d][v] = std::min(abs(tank.x - x), abs(tank.y - y));
+                    continue;
+                }
+                int prev = (p + 1) % 2;
+                int gox = dp[prev][kVertical][y] + abs(tank.x - x);
+                int goy = dp[prev][kHorizontal][x] + abs(tank.y - y);
+                dp[curr][d][v] = std::min(gox, goy);
+            }
+        }
+    }
+
+    cout << dp[(T-1)%2][0][kOffset] << endl;
     return EXIT_SUCCESS;
 }
