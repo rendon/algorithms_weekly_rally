@@ -23,7 +23,6 @@ const int kUndefined = -1;
 // endregion
 
 int64 dp[20][10][2];
-
 int64 f(const string& digits, int p, int l, bool gt) {
     if (p == int(digits.length())) {
         return l == 0 ? -kInf : 0;
