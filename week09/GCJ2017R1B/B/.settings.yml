@@ -1,0 +1,3 @@
+lang: cpp
+src_file: small.cpp
+tests: 1

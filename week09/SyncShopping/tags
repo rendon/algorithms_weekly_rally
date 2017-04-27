@@ -1,0 +1,33 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+$	tags	/^Edge	main.cpp	\/^struct Edge {$\/;"	s	file:$/;"	m	struct:Edge	file:
+$	tags	/^SyncShopping	main.cpp	\/^class SyncShopping {$\/;"	c	file:$/;"	m	struct:Edge::__anon1	file:
+$	tags	/^main	main.cpp	\/^int main() {$\/;"	f$/;"	m	class:Edge::__anon1::__anon2::__anon3	file:
+$	tags	/^solve	main.cpp	\/^    int solve() {$\/;"	f	class:SyncShopping$/;"	m	class:Edge::__anon1::__anon2	file:
+Edge	main.cpp	/^struct Edge {$/;"	s	file:
+Edge	tags	/^Edge	main.cpp	\/^struct Edge {$\/;"	s	file:$/;"	s	file:
+K	main.cpp	/^    int N, M, K;$/;"	m	class:SyncShopping	file:
+M	main.cpp	/^    int N, M, K;$/;"	m	class:SyncShopping	file:
+N	main.cpp	/^    int N, M, K;$/;"	m	class:SyncShopping	file:
+PQNode	main.cpp	/^struct PQNode {$/;"	s	file:
+SyncShopping	main.cpp	/^class SyncShopping {$/;"	c	file:
+centers	main.cpp	/^    vector<int> centers;$/;"	m	class:SyncShopping	file:
+findMinimumTime	main.cpp	/^    int findMinimumTime() {$/;"	f	class:SyncShopping
+format	tags	/^!_TAG_FILE_FORMAT	2	\/extended format; --format=1 will not append ;" to lines\/$/;"	v
+graph	main.cpp	/^    vector<vector<Edge>> graph;$/;"	m	class:SyncShopping	file:
+int64	main.cpp	/^typedef long long           int64;$/;"	t	file:
+kInf	main.cpp	/^const int kInf = 1 << 30;$/;"	v
+main	main.cpp	/^int main() {$/;"	f
+node	main.cpp	/^    int node, weight;$/;"	m	struct:Edge	file:
+node	main.cpp	/^    int weight, node, state;$/;"	m	struct:PQNode	file:
+operator >	main.cpp	/^    bool operator>(const PQNode& that) const {$/;"	f	struct:PQNode
+solve	main.cpp	/^    int solve() {$/;"	f	class:SyncShopping
+state	main.cpp	/^    int weight, node, state;$/;"	m	struct:PQNode	file:
+uint64	main.cpp	/^typedef unsigned long long  uint64;$/;"	t	file:
+uint64	tags	/^uint64	main.cpp	\/^typedef unsigned long long  uint64;$\/;"	t	file:$/;"	t	file:
+weight	main.cpp	/^    int node, weight;$/;"	m	struct:Edge	file:
+weight	main.cpp	/^    int weight, node, state;$/;"	m	struct:PQNode	file:
