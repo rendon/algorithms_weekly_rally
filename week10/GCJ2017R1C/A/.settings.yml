@@ -1,0 +1,4 @@
+lang: cpp
+src_file: main.cpp
+tests: 1
+validator: numeric1e6
