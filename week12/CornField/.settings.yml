@@ -1,0 +1,3 @@
+lang: c
+src_file: main.c
+tests: 1
