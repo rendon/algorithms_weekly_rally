@@ -1,4 +1,4 @@
-/* Copyright 2017 Rafael Rendón Pablo <rafaelrendonpablo@gmail.com> */
+/* Copyright 2018 Rafael Rendón Pablo <rafaelrendonpablo@gmail.com> */
 // region Template
 #include <iostream>
 #include <fstream>
